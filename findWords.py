@@ -50,6 +50,7 @@ while answer == "yes" :
                   sorted(list(result)))
 
     else :
+#AND
         if querylist[1] == "AND" :
             lines1 = worddict.get(querylist[0].upper())
             lines2 = worddict.get(querylist[2].upper())
@@ -60,6 +61,46 @@ while answer == "yes" :
                           "exist on lines: ", sorted(list(result)))
             else :
                 print("The words to dnot occur on the same line anywhere")
+#OR
+        elif querylist[1] == "OR" :
+            lines1 = worddict.get(querylist[0].upper())
+            lines2 = worddict.get(querylist[2].upper())
+
+            if lines1 and lines2 :
+                result = lines1 | lines2
+                print("At least one of the words", querylist[0], "or",
+                      querylist[2], " exist on lines: ", sorted(list(result)))
+            
+            elif lines1 and not lines2 :
+                result = lines1
+                print("The word", querylist[0], " exist on lines: ",
+                      sorted(list(result)))
+
+            elif not lines1 and lines2 :
+                result = lines2
+                print("The word", querylist[2], " exist on lines: ",
+                      sorted(list(result)))
+#XOR
+        elif querylist[1] == "XOR" :
+            lines1 = worddict.get(querylist[0].upper())
+            lines2 = worddict.get(querylist[2].upper())
+
+            if lines1 and lines2 :
+                result = lines1 ^ lines2
+                print("At least one of the words", querylist[0], "or",
+                      querylist[2], " exist on lines: ", sorted(list(result)))
+
+            elif lines1 and not lines2 :
+                result = lines1
+                print("The word", querylist[0], " exist on lines: ",
+                      sorted(list(result)))
+            
+            elif not lines1 and lines2 :
+                result = lines2
+                print("The word", querylist[2], " exist on lines: ",
+                      sorted(list(result)))
+
+
 
 
 
